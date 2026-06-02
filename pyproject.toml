@@ -1,0 +1,23 @@
+[project]
+name = "seo-ops-command-center"
+version = "0.1.0"
+description = "Operator-in-the-loop SEO operations toolkit with structured fix queues and human-approved repairs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Andrew Alpaugh" }
+]
+dependencies = [
+  "PyYAML>=6.0.0"
+]
+
+[project.scripts]
+seo-ops = "seo_ops.cli:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

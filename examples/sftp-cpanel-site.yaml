@@ -1,0 +1,31 @@
+workspace:
+  data_dir: .seo-ops/data
+  report_dir: .seo-ops/reports
+
+mode: report_only
+
+sites:
+  - name: static-cpanel-site
+    domain: example.net
+    group: business
+    ownership: owned
+    edit_policy: approval_required
+    source:
+      type: local_static
+      path: ./dist/example-net
+    deploy:
+      type: sftp
+      host_env: EXAMPLE_SFTP_HOST
+      port: 22
+      username_env: EXAMPLE_SFTP_USER
+      password_env: EXAMPLE_SFTP_PASSWORD
+      remote_path: /public_html
+      strategy: sync
+      dry_run_first: true
+      delete_remote_extra_files: false
+      require_approval: true
+    providers:
+      gsc:
+        property: https://example.net/
+      pagespeed:
+        enabled: true

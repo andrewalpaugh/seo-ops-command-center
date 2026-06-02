@@ -1,0 +1,55 @@
+workspace:
+  data_dir: .seo-ops/data
+  report_dir: .seo-ops/reports
+
+mode: report_only
+
+approvals:
+  required_for:
+    - file_edits
+    - git_commits
+    - deploys
+    - redirects
+    - content_generation
+    - publishing
+    - cross_site_links
+    - paid_api_calls
+    - ads_changes
+
+automation:
+  safe_fixes:
+    enabled: false
+  content_generation:
+    enabled: false
+    mode: draft_only
+  publishing:
+    enabled: false
+
+groups:
+  business:
+    description: Product or company websites.
+  personal:
+    description: Personal brand or reputation websites.
+
+sites:
+  - name: example-static-site
+    domain: example.com
+    group: business
+    ownership: owned
+    edit_policy: repo_backed_safe_fixes
+    source:
+      type: git_worktree
+      path: ./examples/site
+      branch: main
+    deploy:
+      type: git_push
+      remote: origin
+      branch: main
+      require_approval: true
+    providers:
+      gsc:
+        property: sc-domain:example.com
+      pagespeed:
+        enabled: true
+      indexnow:
+        enabled: true

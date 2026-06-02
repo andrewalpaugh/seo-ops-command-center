@@ -4,6 +4,8 @@
 !.env.example
 config.yaml
 config.local.yaml
+.project-context.md
+PROJECT_CONTEXT.local.md
 *.token
 *.secret
 client_secret*.json

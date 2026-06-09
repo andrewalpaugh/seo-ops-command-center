@@ -2,9 +2,9 @@
 
 ## Working Thesis
 
-The private SiteOps codebase that inspired this project is useful enough to become a public SEO operations tool, but it should not be published as-is. It is currently a personal operations system with specific domains, buckets, repo paths, credentials, content workflows, and approval rules embedded throughout.
+SEO Ops Command Center should become a clean, reusable public SEO operations tool rather than a one-off personal automation system. The public version needs generic configuration, fake examples, redacted fixtures, and explicit approval boundaries before it can be useful to other operators.
 
-The public version should be a clean extraction into a new repository. It should focus first on monitoring, issue ingestion, structured fix queues, and human-approved repairs. AI content generation, publishing, ads, and other high-risk automation should be optional advanced modules with explicit opt-in controls.
+The project should focus first on monitoring, issue ingestion, structured fix queues, and human-approved repairs. AI content generation, publishing, ads, and other high-risk automation should be optional advanced modules with explicit opt-in controls.
 
 ## Product Positioning
 
@@ -14,21 +14,20 @@ The public-facing pitch should not lead with automated AI publishing. A stronger
 
 > A technical SEO operations cockpit that finds issues, explains impact, queues fixes, and helps site owners safely repair their sites with human approval.
 
-## Why Not Publish This Repo Directly
+## Public-Ready Scope
 
-This repo contains too much personal and project-specific state:
+Public releases should avoid project-specific assumptions and private operational state:
 
-- Private source domains and strategic buckets.
-- Source-project business, reputation, and platform-specific rules.
-- Local repo paths.
-- Daily run logs.
-- Google Search Console, Gmail, Cloudflare, Render, Blogger, and Webflow assumptions.
-- Generated content history.
-- Private project-agent routing.
-- SQLite data and queue artifacts.
-- Business-specific SEO strategy.
+- Real domains, customer names, and strategic buckets.
+- Business-specific reputation, content, or platform rules.
+- Local machine paths and repo paths.
+- Daily run logs or generated operational history.
+- Provider credentials, OAuth artifacts, cookies, or tokens.
+- Raw email bodies or unredacted vendor alerts.
+- SQLite databases, queues, reports, and runtime artifacts.
+- Any private business strategy or source-system implementation detail.
 
-The public project needs a clean repo with reusable modules, fake examples, redacted fixtures, and a generic configuration model.
+The public project should stay generic and reusable: fake example domains, redacted fixtures, provider-neutral interfaces, and configuration that starts from zero.
 
 ## Target Users
 
@@ -618,12 +617,11 @@ V1 should be considered ready when:
 
 ## Recommended First Move
 
-Start with a clean extraction spike:
+Start with a focused Phase 1 foundation:
 
-- Create a private scratch repo.
-- Copy no secrets and no data.
 - Implement config loading, redaction, findings, and queue.
-- Port the Gmail SEO parser upgrade first because it is immediately useful and easy to demonstrate.
+- Add a first useful provider behind report-only boundaries.
+- Prefer the Gmail SEO parser path because vendor alerts are immediately useful and easy to demonstrate with fake fixtures.
 - Add fake fixtures from redacted Ahrefs/Semrush templates.
 - Keep everything report-only until the queue model is solid.
 

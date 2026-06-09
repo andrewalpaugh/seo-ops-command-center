@@ -14,6 +14,7 @@ class ConfigLoaderTests(unittest.TestCase):
         self.assertEqual(config.mode, "report_only")
         self.assertEqual(config.workspace.data_dir, Path(".seo-ops/data"))
         self.assertEqual(config.workspace.report_dir, Path(".seo-ops/reports"))
+        self.assertEqual(config.workspace.import_dir, Path(".seo-ops/imports"))
         self.assertFalse(config.automation.safe_fixes_enabled)
         self.assertFalse(config.automation.publishing_enabled)
         self.assertEqual(config.sites[0].domain, "example.com")

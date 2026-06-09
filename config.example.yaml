@@ -1,6 +1,7 @@
 workspace:
   data_dir: .seo-ops/data
   report_dir: .seo-ops/reports
+  import_dir: .seo-ops/imports
 
 # Phase 1 supports report_only. Future modes must keep explicit approval gates.
 mode: report_only
@@ -48,6 +49,8 @@ sites:
       branch: main
       require_approval: true
     providers:
+      gsc_exports:
+        enabled: true
       gsc:
         property: sc-domain:example.com
       pagespeed:

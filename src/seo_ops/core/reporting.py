@@ -11,6 +11,7 @@ from seo_ops.config.schema import SeoOpsConfig
 from seo_ops.core.fix_queue import FixQueue
 from seo_ops.core.findings import Finding, Severity
 from seo_ops.core.redaction import redact_value
+from seo_ops.providers.gsc_exports import collect_gsc_export_findings
 
 
 def build_doctor_findings(config: SeoOpsConfig) -> list[Finding]:
@@ -56,7 +57,7 @@ def write_report_only_run(config: SeoOpsConfig, output_dir: str | Path) -> tuple
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    queue = FixQueue(build_doctor_findings(config))
+    queue = FixQueue([*build_doctor_findings(config), *collect_gsc_export_findings(config)])
     queue_path = output_path / "fix_queue.json"
     report_path = output_path / "report.json"
     queue.save(queue_path)
@@ -67,6 +68,7 @@ def write_report_only_run(config: SeoOpsConfig, output_dir: str | Path) -> tuple
         "workspace": {
             "data_dir": str(config.workspace.data_dir),
             "report_dir": str(config.workspace.report_dir),
+            "import_dir": str(config.workspace.import_dir),
         },
         "automation": {
             "safe_fixes_enabled": config.automation.safe_fixes_enabled,

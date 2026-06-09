@@ -85,6 +85,7 @@ The tool is configured entirely through YAML. Start with `config.example.yaml` a
 Important top-level sections:
 
 - `workspace`: local data and report directories.
+- `workspace.import_dir`: local drop folder for cost-free imports such as GSC CSV exports.
 - `mode`: current operating mode. Phase 1 supports `report_only`.
 - `approvals`: operations that require human approval.
 - `automation`: explicit toggles for safe fixes, content generation, and publishing.
@@ -92,6 +93,33 @@ Important top-level sections:
 - `sites`: site definitions, provider settings, source metadata, and deploy metadata.
 
 The example config intentionally uses `example.com` and contains no real credentials. Put secrets in environment variables or local secret stores, never in tracked config or fixtures.
+
+## Cost-Free GSC Imports
+
+The first provider path does not require Google OAuth or paid APIs. Export a Search Console report as CSV and drop it under:
+
+```text
+.seo-ops/imports/gsc/<domain>/
+```
+
+For example:
+
+```text
+.seo-ops/imports/gsc/example.com/performance-pages.csv
+```
+
+Enable the parser for the site:
+
+```yaml
+sites:
+  - name: example-static-site
+    domain: example.com
+    providers:
+      gsc_exports:
+        enabled: true
+```
+
+Phase 1 recognizes Performance > Pages-style exports with page URL, clicks, impressions, CTR, and position columns. It turns high-impression, low-CTR pages into fix queue findings. Unsupported CSV shapes are reported as low-severity findings instead of crashing.
 
 ## Commands
 

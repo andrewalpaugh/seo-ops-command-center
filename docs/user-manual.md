@@ -110,6 +110,36 @@ You can choose a different output directory:
 seo-ops run --config config.yaml --mode report-only --output-dir /tmp/seo-ops-report
 ```
 
+## Importing GSC Exports
+
+You can use Google Search Console data without OAuth by exporting reports as CSV and dropping them into the local import folder:
+
+```text
+.seo-ops/imports/gsc/<domain>/
+```
+
+Example:
+
+```text
+.seo-ops/imports/gsc/example.com/performance-pages.csv
+```
+
+Enable the import parser for the matching site:
+
+```yaml
+workspace:
+  import_dir: .seo-ops/imports
+
+sites:
+  - name: example-static-site
+    domain: example.com
+    providers:
+      gsc_exports:
+        enabled: true
+```
+
+Phase 1 recognizes Performance > Pages-style CSV exports and queues findings for pages with high impressions and low CTR. Unknown CSV shapes create low-severity findings so you can see which exports are not supported yet.
+
 ## Inspecting the Queue
 
 ```bash

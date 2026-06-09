@@ -76,6 +76,7 @@ def _build_config(data: dict[str, Any]) -> SeoOpsConfig:
         workspace=WorkspaceConfig(
             data_dir=Path(str(workspace_data.get("data_dir", ".seo-ops/data"))),
             report_dir=Path(str(workspace_data.get("report_dir", ".seo-ops/reports"))),
+            import_dir=Path(str(workspace_data.get("import_dir", ".seo-ops/imports"))),
         ),
         mode=mode,
         approvals=ApprovalConfig(required_for=tuple(_strings(approvals_data.get("required_for", [])))),

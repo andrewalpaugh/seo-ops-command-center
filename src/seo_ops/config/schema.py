@@ -14,6 +14,7 @@ SAFE_MODES = {"report_only", "queue", "assisted", "batch", "advanced"}
 class WorkspaceConfig:
     data_dir: Path = Path(".seo-ops/data")
     report_dir: Path = Path(".seo-ops/reports")
+    import_dir: Path = Path(".seo-ops/imports")
 
 
 @dataclass(frozen=True)

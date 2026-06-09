@@ -2,6 +2,7 @@ workspace:
   data_dir: .seo-ops/data
   report_dir: .seo-ops/reports
 
+# Phase 1 supports report_only. Future modes must keep explicit approval gates.
 mode: report_only
 
 approvals:
